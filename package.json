@@ -9,7 +9,7 @@
     "type": "git",
     "url": "https://github.com/vitorvicente/Components-Library"
   },
-  "version": "0.0.3",
+  "version": "0.0.6",
   "private": false,
   "dependencies": {
     "@storybook/addon-storyshots": "^6.3.8",
