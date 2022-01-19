@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import Avatar from "../assets/avatar.png"
-import Background from "../assets/main-background.jpg"
+import Avatar from "./Assets/avatar.png"
+import Background from "./Assets/main-background.jpg"
 
 const MastHead = styled.div`
 	margin-bottom:50px;

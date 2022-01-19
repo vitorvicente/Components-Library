@@ -9,9 +9,9 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _avatar = _interopRequireDefault(require("../assets/avatar.png"));
+var _avatar = _interopRequireDefault(require("./Assets/avatar.png"));
 
-var _mainBackground = _interopRequireDefault(require("../assets/main-background.jpg"));
+var _mainBackground = _interopRequireDefault(require("./Assets/main-background.jpg"));
 
 var _templateObject, _templateObject2, _templateObject3, _templateObject4;
 
