@@ -13,7 +13,7 @@ export class WithAuthorizationClass extends Component {
     if (this.props.firebase && !this._initFirebase) {
       this._initFirebase = true;
 
-      this.listener = this.props.firebase.onAuthStateChanged(
+      this.listener = this.props.firebase.onAuthUserListener(
         this.props.firebaseAuthNext,
         this.props.firebaseAuthFallback
       );
