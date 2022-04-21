@@ -68,7 +68,7 @@ var WithAuthorizationClass = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "firebaseInit", function () {
       if (_this.props.firebase && !_this._initFirebase) {
         _this._initFirebase = true;
-        _this.listener = _this.props.firebase.onAuthUserListener(_this.props.firebaseAuthNext, _this.props.firebaseAuthFallback);
+        _this.listener = _this.props.firebase.onAuthStateChanged(_this.props.firebaseAuthNext, _this.props.firebaseAuthFallback);
       }
     });
 

@@ -75,7 +75,7 @@ var withAuthentication = function withAuthentication(Component) {
       _defineProperty(_assertThisInitialized(_this), "firebaseInit", function () {
         if (_this.props.firebase && !_this._initFirebase) {
           _this._initFirebase = true;
-          _this.listener = _this.props.firebase.onAuthUserListener(function (authUser) {
+          _this.listener = _this.props.firebase.onAuthStateChanged(function (authUser) {
             localStorage.setItem("authUser", JSON.stringify(authUser));
 
             _this.safeSetState({
