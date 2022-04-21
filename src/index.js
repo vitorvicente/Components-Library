@@ -1,5 +1,7 @@
 export { VtrHeader } from './components/VtrHeader';
 export { VtrFooter } from './components/VtrFooter';
+export {  default as Layout, setLayoutBase  } from './components/Layout';
+
 
 export {
   default as Firebase,
@@ -7,4 +9,12 @@ export {
   withFirebase,
   getFirebase,
   setFirebaseClass,
-} from "./Firebase";
+} from "./components/Firebase";
+
+export {
+  AuthUserContext,
+  withAuthentication,
+  withAuthorization,
+  WithAuthorizationClass,
+  setWithAuthorizationWrapper,
+} from "./components/Session";

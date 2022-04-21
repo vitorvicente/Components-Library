@@ -5,39 +5,45 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "FirebaseContext", {
+Object.defineProperty(exports, "AuthUserContext", {
   enumerable: true,
   get: function get() {
     return _context.default;
   }
 });
-exports.default = void 0;
-Object.defineProperty(exports, "getFirebase", {
+Object.defineProperty(exports, "WithAuthorizationClass", {
   enumerable: true,
   get: function get() {
-    return _firebase.getFirebase;
+    return _withAuthorization.WithAuthorizationClass;
   }
 });
-Object.defineProperty(exports, "setFirebaseClass", {
+Object.defineProperty(exports, "setWithAuthorizationWrapper", {
   enumerable: true,
   get: function get() {
-    return _firebase.setFirebaseClass;
+    return _withAuthorization.setWithAuthorizationWrapper;
   }
 });
-Object.defineProperty(exports, "withFirebase", {
+Object.defineProperty(exports, "withAuthentication", {
   enumerable: true,
   get: function get() {
-    return _context.withFirebase;
+    return _withAuthentication.default;
+  }
+});
+Object.defineProperty(exports, "withAuthorization", {
+  enumerable: true,
+  get: function get() {
+    return _withAuthorization.default;
   }
 });
 
-var _context = _interopRequireWildcard(require("./context"));
+var _context = _interopRequireDefault(require("./context"));
 
-var _firebase = _interopRequireWildcard(require("./firebase"));
+var _withAuthentication = _interopRequireDefault(require("./withAuthentication"));
+
+var _withAuthorization = _interopRequireWildcard(require("./withAuthorization"));
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var _default = _firebase.default;
-exports.default = _default;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
