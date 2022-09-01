@@ -49,7 +49,7 @@ var Firebase = /*#__PURE__*/_createClass(function Firebase(app, _config) {
   _defineProperty(this, "onAuthUserListener", function (next, fallback) {
     return (0, _auth.onAuthStateChanged)(_this.auth, function (authUser) {
       if (authUser) {
-        _this.user(authUser.uid).get().then( /*#__PURE__*/function () {
+        (0, _firestore.getDoc)(_this.user(authUser.uid)).then( /*#__PURE__*/function () {
           var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(snapshot) {
             var dbUser, _dbUser;
 
@@ -73,7 +73,7 @@ var Firebase = /*#__PURE__*/_createClass(function Firebase(app, _config) {
                       guest: true
                     };
                     _context.next = 6;
-                    return _this.user(authUser.uid).update(dbUser);
+                    return (0, _firestore.updateDoc)(_this.user(authUser.uid), dbUser);
 
                   case 6:
                     authUser = _objectSpread({
@@ -92,8 +92,7 @@ var Firebase = /*#__PURE__*/_createClass(function Firebase(app, _config) {
                         guest: true
                       }
                     };
-
-                    _this.user(authUser.uid).set(_dbUser).then(function () {
+                    (0, _firestore.setDoc)(_this.user(authUser.uid), _dbUser).then(function () {
                       authUser = _objectSpread({
                         uid: authUser.uid,
                         email: authUser.email,

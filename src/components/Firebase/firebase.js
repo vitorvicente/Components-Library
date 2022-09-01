@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app"
-import { collection, doc, getFirestore } from "firebase/firestore";
+import { collection, doc, getFirestore, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -28,51 +28,47 @@ class Firebase {
   onAuthUserListener = (next, fallback) =>
     onAuthStateChanged(this.auth, (authUser) => {
       if (authUser) {
-        this.user(authUser.uid)
-            .get()
-            .then(async (snapshot) => {
-              if (snapshot.exists) {
-                const dbUser = snapshot.data();
-                // eslint-disable-next-line no-prototype-builtins
-                if (!dbUser.hasOwnProperty("roles")) {
-                  dbUser.roles = {
-                    guest: true,
-                  };
-                  await this.user(authUser.uid).update(dbUser);
-                }
+        getDoc(this.user(authUser.uid)).then(async (snapshot) => {
+          if (snapshot.exists) {
+            const dbUser = snapshot.data();
+            // eslint-disable-next-line no-prototype-builtins
+            if (!dbUser.hasOwnProperty("roles")) {
+              dbUser.roles = {
+                guest: true,
+              };
 
-                authUser = {
-                  uid: authUser.uid,
-                  email: authUser.email,
-                  emailVerified: authUser.emailVerified,
-                  providerData: authUser.providerData,
-                  ...dbUser,
-                };
+              await updateDoc(this.user(authUser.uid), dbUser);
+            }
 
-                next(authUser);
-              } else {
-                const dbUser = {
-                  roles: {
-                    guest: true,
-                  },
-                };
+            authUser = {
+              uid: authUser.uid,
+              email: authUser.email,
+              emailVerified: authUser.emailVerified,
+              providerData: authUser.providerData,
+              ...dbUser,
+            };
 
-                this.user(authUser.uid)
-                    .set(dbUser)
-                    .then(() => {
-                      authUser = {
-                        uid: authUser.uid,
-                        email: authUser.email,
-                        emailVerified: authUser.emailVerified,
-                        providerData: authUser.providerData,
-                        ...dbUser,
-                      };
+            next(authUser);
+          } else {
+            const dbUser = {
+              roles: {
+                guest: true,
+              },
+            };
 
-                      next(authUser);
-                    });
-              }
-            })
-            .catch(console.error);
+            setDoc(this.user(authUser.uid), dbUser).then(() => {
+              authUser = {
+                uid: authUser.uid,
+                email: authUser.email,
+                emailVerified: authUser.emailVerified,
+                providerData: authUser.providerData,
+                ...dbUser,
+              };
+
+              next(authUser);
+            });
+          }
+        }).catch(console.error);
       } else {
         fallback();
       }

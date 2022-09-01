@@ -15,7 +15,7 @@
     "url": "https://github.com/vitorvicente/Components-Library/issues"
   },
   "homepage": "https://github.com/vitorvicente/Components-Library#readme",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "dependencies": {
     "firebase": "^9.6.11",
