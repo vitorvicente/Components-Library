@@ -32,6 +32,20 @@ var Firebase = /*#__PURE__*/_createClass(function Firebase(app, _config) {
 
   _classCallCheck(this, Firebase);
 
+  _defineProperty(this, "createUser", function (email, password) {
+    return (0, _auth.createUserWithEmailAndPassword)(_this.auth, email, password);
+  });
+
+  _defineProperty(this, "doSignInWithEmail", function (email, password) {
+    return (0, _auth.signInWithEmailAndPassword)(_this.auth, email, password);
+  });
+
+  _defineProperty(this, "doSignOut", function () {
+    return (0, _auth.signOut)(_this.auth).then(function () {
+      return localStorage.removeItem("authUser");
+    });
+  });
+
   _defineProperty(this, "onAuthUserListener", function (next, fallback) {
     return (0, _auth.onAuthStateChanged)(_this.auth, function (authUser) {
       if (authUser) {
@@ -123,8 +137,7 @@ var Firebase = /*#__PURE__*/_createClass(function Firebase(app, _config) {
   app = (0, _app.initializeApp)(_config);
   this.auth = (0, _auth.getAuth)(app);
   this.firestore = (0, _firestore.getFirestore)(app);
-} // *** Merge Auth and DB User API ***
-);
+});
 
 var firebase;
 var firebaseClass = Firebase;

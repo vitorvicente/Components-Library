@@ -1,6 +1,12 @@
 import { initializeApp } from "firebase/app"
-import { getFirestore, doc, collection } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { collection, doc, getFirestore } from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut
+} from "firebase/auth";
 
 class Firebase {
   constructor(app, config) {
@@ -10,6 +16,13 @@ class Firebase {
     this.auth = getAuth(app);
     this.firestore = getFirestore(app);
   }
+
+  createUser = (email, password) => createUserWithEmailAndPassword(this.auth, email, password);
+
+  doSignInWithEmail = (email, password) => signInWithEmailAndPassword(this.auth, email, password);
+
+  doSignOut = () =>
+    signOut(this.auth).then(() => localStorage.removeItem("authUser"));
 
   // *** Merge Auth and DB User API ***
   onAuthUserListener = (next, fallback) =>
@@ -68,7 +81,7 @@ class Firebase {
   // *** User API ***
   user = (uid) => doc(this.firestore, "users", uid);
   users = () => collection(this.firestore, "users");
-  
+
   // *** Config API ***
   config = (config) => doc(this.firestore, "config", config)
 }
