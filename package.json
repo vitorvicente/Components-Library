@@ -15,7 +15,7 @@
     "url": "https://github.com/vitorvicente/Components-Library/issues"
   },
   "homepage": "https://github.com/vitorvicente/Components-Library#readme",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": false,
   "dependencies": {
     "babel-loader": "^8.1.0",
